@@ -1,0 +1,10 @@
+*cache*/
+*.py[cod]
+build/
+lib/
+.vscode/
+*.log*
+venv/
+build/
+dist/
+*.egg*
