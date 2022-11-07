@@ -16,13 +16,13 @@ class color:
 
 APPS = ["7362610", "7539087"]
 
-LOGO = rf"""{color.cyan}__   ___  _____ _        _           ___                     
-\ \ / / |/ / __| |_ __ _| |_ _  _ __|_ _|_ __  __ _ __ _ ___ 
+LOGO = rf"""{color.cyan}__   ___  _____ _        _           ___
+\ \ / / |/ / __| |_ __ _| |_ _  _ __|_ _|_ __  __ _ __ _ ___
  \ V /| ' <\__ \  _/ _` |  _| || (_-<| || '  \/ _` / _` / -_)
   \_/ |_|\_\___/\__\__,_|\__|\_,_/__/___|_|_|_\__,_\__, \___|
                                                    |___/     {color.clear}"""
 HELP = """commands:
- - app {id}   | select app 
+ - app {id}   | select app~
  - set {id}   | set status image by id
  - get        | get current status image id
  - new        | generate token for app
@@ -82,7 +82,7 @@ def process_command() -> None:
     try:
         match command[0]:
             case "app":
-                new_app = command[1]                
+                new_app = command[1]
                 # small id
                 if int(new_app) - 1 in range(len(APPS)):
                     current_app = APPS[int(new_app) - 1]
