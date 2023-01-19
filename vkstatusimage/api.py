@@ -1,13 +1,15 @@
 import urllib.request
 from json import loads
 
-Token = str
+Token: type = str
 
 API_URL = r"https://api.vk.com/"
 API_VERSION = "5.131"
 
 
 class TokenError(Exception):
+    """Raised when an error occurs while retrieving a token."""
+
     def __init__(self, data: dict) -> None:
         self.message = data["error_msg"]
         self.data = data
@@ -15,9 +17,11 @@ class TokenError(Exception):
 
 
 def bake_url(url: str, args: dict) -> str:
+    """Bakes a URL with the given arguments."""
     if len(args.keys()):
         return rf"{url}?{'&'.join([rf'{key}={val}' for key, val in args.items()])}"
-    return url
+    else:
+        return url
 
 
 def _generate_method_url(method: str, args: dict | None = None) -> str:
