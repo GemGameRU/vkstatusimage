@@ -47,18 +47,21 @@ def new_token(app_id) -> None:
 
     print("Please authorize and paste url/token.")
     print(generate_auth_link(app_id))
+
     token = parse_token(input("url/token: "))
     storage.update_token(app_id, token)
 
 
 def print_current_status():
     global token
+
     status = get_status(token)
     print(f"{status['id']}: {status['name']}")
 
 
 def change_token():
     global token, storage
+
     if (token := storage.get_token(current_app)) == "":
         print(f"{color.red}Current token invalid!{color.clear}")
         new_token(current_app)
@@ -67,10 +70,10 @@ def change_token():
 def process_command() -> None:
     """Take input and parse it."""
     global current_app, token, storage
-    command: list[str] = input(f"{color.cyan}{current_app}>{color.clear} ").split()
 
+    command: list[str] = input(f"{color.cyan}{current_app}>{color.clear} ").split()
     # If no command is given, skip.
-    if len(command) <= 0:
+    if not command:
         return
 
     try:
