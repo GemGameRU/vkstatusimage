@@ -2,7 +2,7 @@ from oauth import Storage, generate_auth_link, parse_token
 from api import get_status, set_status, get_statuses_list, TokenError
 
 
-class color:
+class Color:
     """Color for terminal output."""
 
     clear = "\033[0m"
@@ -20,11 +20,11 @@ COMMANDS = ["app", "set", "get", "new", "list", "reset", "help", "exit"]
 
 APPS = ["7362610", "7539087", "51477777"]
 
-LOGO = rf"""{color.cyan}__   ___  _____ _        _           ___
+LOGO = rf"""{Color.cyan}__   ___  _____ _        _           ___
 \ \ / / |/ / __| |_ __ _| |_ _  _ __|_ _|_ __  __ _ __ _ ___
  \ V /| ' <\__ \  _/ _` |  _| || (_-<| || '  \/ _` / _` / -_)
   \_/ |_|\_\___/\__\__,_|\__|\_,_/__/___|_|_|_\__,_\__, \___|
-                                                   |___/     {color.clear}"""
+                                                   |___/     {Color.clear}"""
 HELP = """commands:
  - app {id}   | select app
  - set {id}   | set status image by id
@@ -63,7 +63,7 @@ def change_token():
     global token, storage
 
     if (token := storage.get_token(current_app)) == "":
-        print(f"{color.red}Current token invalid!{color.clear}")
+        print(f"{Color.red}Current token invalid!{Color.clear}")
         new_token(current_app)
 
 
@@ -71,7 +71,7 @@ def process_command() -> None:
     """Take input and parse it."""
     global current_app, token, storage
 
-    command: list[str] = input(f"{color.cyan}{current_app}>{color.clear} ").split()
+    command: list[str] = input(f"{Color.cyan}{current_app}>{Color.clear} ").split()
     # If no command is given, skip.
     if not command:
         return
@@ -87,10 +87,10 @@ def process_command() -> None:
                     current_app = new_app
                     if new_app not in APPS:
                         print(
-                            f"{color.yellow}WARNING: App may not be supported!{color.clear}"
+                            f"{Color.yellow}WARNING: App may not be supported!{Color.clear}"
                         )
                 else:
-                    print(f"{color.red}ERROR: Not supported app id.{color.clear}")
+                    print(f"{Color.red}ERROR: Not supported app id.{Color.clear}")
                     return
                 print(f"Current app: {current_app}")
                 change_token()
@@ -122,16 +122,16 @@ def process_command() -> None:
                 exit()
 
             case [_command, *_] if _command in COMMANDS:
-                print(f"{color.red}!!! Invalid args !!!{color.clear}")
+                print(f"{Color.red}!!! Invalid args !!!{Color.clear}")
                 return
 
             case _:
                 print(
-                    f"{color.red}!!! Invalid command !!!{color.clear}\nUse 'help' command."
+                    f"{Color.red}!!! Invalid command !!!{Color.clear}\nUse 'help' command."
                 )
     except TokenError as e:
         print(
-            f"{color.red}ERROR: {e.message}{color.clear}\nPlease generate new token with 'new'."
+            f"{Color.red}ERROR: {e.message}{Color.clear}\nPlease generate new token with 'new'."
         )
 
 
