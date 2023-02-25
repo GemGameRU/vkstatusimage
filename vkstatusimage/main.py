@@ -45,8 +45,8 @@ apps:
 def new_token(app_id) -> None:
     global token
 
-    print("Please authorize and paste url/token.")
-    print(generate_auth_link(app_id))
+    print("Please authorize and paste generated url/token.")
+    print(f"\033[1;4m{generate_auth_link(app_id)}{Color.clear}\n")
 
     token = parse_token(input("url/token: "))
     storage.update_token(app_id, token)
@@ -63,7 +63,7 @@ def change_token():
     global token, storage
 
     if (token := storage.get_token(current_app)) == "":
-        print(f"{Color.red}Current token invalid!{Color.clear}")
+        print(f"{Color.red}Current token revoked!{Color.clear}\n")
         new_token(current_app)
 
 
