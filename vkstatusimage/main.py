@@ -136,6 +136,11 @@ def process_command() -> None:
 
 
 if __name__ == "__main__":
+    import os
+
+    # for cmd.exe
+    os.system("")
+
     try:
         current_app = "7362610"
         print(LOGO)
