@@ -1,5 +1,5 @@
-from oauth import Storage, generate_auth_link, parse_token
-from api import get_status, set_status, get_statuses_list, TokenError
+from .oauth import Storage, generate_auth_link, parse_token
+from .api import get_status, set_status, get_statuses_list, TokenError
 
 
 class Color:
@@ -135,7 +135,8 @@ def process_command() -> None:
         )
 
 
-if __name__ == "__main__":
+def main():
+    global current_app, storage
     import os
 
     # for cmd.exe
@@ -152,3 +153,7 @@ if __name__ == "__main__":
             process_command()
     except KeyboardInterrupt:
         exit()
+
+
+if __name__ == "__main__":
+    main()

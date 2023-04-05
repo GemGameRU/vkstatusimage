@@ -1,0 +1,27 @@
+[project]
+name = "vkstatusimage"
+version = "1.0.0"
+authors = [{ name = "Vadim Grebenyuk", email = "gemgameru@mail.ru" }]
+description = "Tool for changing status images in VK."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Customer Service",
+]
+
+[project.optional-dependencies]
+dev = ["black"]
+
+[project.urls]
+"Homepage" = "https://github.com/gemgameru/vkstatusimage"
+"Bug Tracker" = "https://github.com/gemgameru/vkstatusimage/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+vkstatusimage = "vkstatusimage.__main__:main"

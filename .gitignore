@@ -4,6 +4,7 @@ build/
 lib/
 .vscode/
 *.log*
+.venv/
 venv/
 build/
 dist/
